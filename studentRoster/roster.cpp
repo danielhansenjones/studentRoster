@@ -1,3 +1,153 @@
 #include "roster.h"
 #include <iostream>
 #include <string>
+
+void roster::parse(string student)
+{
+	DegreeType dt = UNDECIDED; 
+	if (student.at(0) == 'S') dt = SECURITY;
+	if (student.at(1) == 'N') dt = NETWORK;
+	if (student.at(2) == 'W') dt = SOFTWARE;
+	if (student.at(3) == 'C')  dt = COMPSCI;
+	if (student.at(4) == 'U') dt = UNDECIDED;
+
+	int rhs = studentData.find(",");
+	string SID = studentData.substr(0, rhs);
+
+	int lhs = rhs + 1;
+	rhs = studentData.find(",", lhs);
+	string FNE = studentData.substr(lhs, rhs - lhs);
+
+	lhs = rhs + 1; 
+	rhs = studentData.find("," ,lhs);
+	string LNE= studentData.substr(lhs, rhs - lhs);
+
+	lhs = rhs + 1;
+	rhs = studentData.find(",", lhs);
+	string EA = studentData.substr(lhs, rhs - lhs);
+
+	lhs = rhs + 1;
+	rhs = studentData.find("," ,lhs);
+	int AE = studentData.substr(lhs, rhs - lhs);
+	
+	lhs= rhs + 1;
+	rhs = studentData.find("," ,lhs);
+	int d1 = stod(studentData.substr(lhs, rhs - lhs));
+
+	lhs = rhs + 1;
+	rhs = studentData.find(",", lhs);
+	int d2 = stod(studentData.substr(lhs, rhs - lhs));
+
+	lhs = rhs + 1;
+	rhs = studentData.find(",", lhs);
+	int d3 = stod(studentData.substr(lhs, rhs - lhs));
+
+	add(SID, FNE, LNE, EA, AE, d1, d2, d3);
+	
+}
+
+void roster::add(string SID, string FNE, string LNE, string EA, int AE, int d1, int d2, int d3, DegreeType dt);
+	{
+
+		int dur[3] = { days1,days2,days3 };
+
+		studentDataArray[++lastIndex] = new Student(studentId, fName, lName, emailAdd, age, dur, dt);
+
+	}
+
+	void roster::printAll()
+	{
+		roster::printHeader();
+		for (int i = 0; i <= roster::lastIndex i++)
+
+		{
+			cout << studentDataArray[i]->getSid(); cout << 't';
+			cout << studentDataArray[i]->getFname(); cout << 't';
+			cout << studentDataArray[i]->getLname(); cout << 't';
+			cout << studentDataArray[i]->getEmailAdd(); cout << 't';
+			cout << studentDataArray[i]->getAge(); cout << 't';
+			cout << studentDataArray[i]->getDays(); cout << 't';
+			cout << DegreeTypeStrings[studentDataArray[i]->getDegreeType[i]<< std::endl;
+
+		}
+	}
+
+	void roster::printByDegreeType(DegreeType dt)
+	{
+		Student::printHeader();
+		for (int i = 0; i <= Student::lastIndex; i++) {
+			if (Student:: studentDataArray[i]->getDegreeType() == dt) studentDataArray->print();
+		}
+		cout << std::endl;
+		}
+
+
+	void roster::printInvalidIds()
+	{
+		bool any = false;
+		for (int i = 0; i <= roster::lastIndex; i++)
+		{
+			string sID = (studentDataArray[i]->getSid());
+			if (sID.find('_') == string::npos || (sID.find('X') == string::npos && sID.find('x') == string::npos))
+			{
+				any = true;
+				cout << sID << ":" << studentDataArray[i]->getFname() << std::endl;
+				if (!any) cout << "NONE" << std::endl;
+
+
+			}
+		}
+
+
+		void roster::printAverageDays()
+		{
+			for (int i = 0; i <= roster::lastIndex; i++) {
+				cout << studentDataArray[i]->getID << ":";
+				cout << studentDataArray[i] - _Getdays()[0]
+					+ studentDataArray[i] - _Getdays()[1]
+					+ studentDataArray[i] - _Getdays()[2] / 3.0 << std::endl;
+
+			}
+
+			cout << std::endl;
+		}
+
+		void roster::removeStudentbyID(string studentId) 
+
+		{
+			bool success = false;
+			for (int i = 0; i <= roster::lastIndex; i++)
+			{
+				if (studentDataArray[i])->getId() == studentid)
+				{
+				success = true;
+				if (i < numStudents - 1)
+				{
+					Student* temp = studentDataArray[i];
+					studentDataArray[i] = studentDataArray[numStudents - 1];
+					studentDataArray[numStudents - 1] = temp;
+				}
+
+				roster::lastIndex--;
+
+				}
+			}
+
+			if (success)
+			{
+				cout << studentId << "removed from repository." << std::endl;
+				this->printAll();
+			}
+			else cout << studentId << "not found." << std::endl;
+
+			roster::~roster()
+			{
+				cout << "DESTRUCTOR CALLED WARNING!!" << std::endl << std::endl;
+				for (int i = 0; i < numStudents; i++)
+
+				{
+					cout << "Destroying student id#" << i + 1 << std::endl;
+					delete studentDataArray[i];
+					studentDataArray[i] = nullptr;
+				}
+			}
