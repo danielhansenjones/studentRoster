@@ -21,7 +21,7 @@ Student::Student(string studentId, string fName, string lName, string emailAdd, 
 	this->studentId = studentId;
 	this->fName = fName;
 	this->lName = lName;
-	this->emailAdd = emailAdd;
+	this->emailAdd = emailAdd; 
 	this->age = age;
 	for (int i = 0; i < numDaystoComp; i++) this->days[i] = days[i];
 	this->degreeType = degreeType;

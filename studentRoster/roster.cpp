@@ -2,14 +2,15 @@
 #include <iostream>
 #include <string>
 
-void roster::parse(string student)
+void roster::parse(string studentData)
 {
 	DegreeType dt = UNDECIDED; 
-	if (student.at(0) == 'S') dt = SECURITY;
-	if (student.at(1) == 'N') dt = NETWORK;
-	if (student.at(2) == 'W') dt = SOFTWARE;
-	if (student.at(3) == 'C')  dt = COMPSCI;
-	if (student.at(4) == 'U') dt = UNDECIDED;
+	if (studentData.at(0) == 'S') dt = SECURITY;
+	if (studentData.at(1) == 'N') dt = NETWORK;
+	if (studentData.at(2) == 'W') dt = SOFTWARE;
+	if (studentData.at(3) == 'C')  dt = COMPSCI;
+	if (studentData.at(4) == 'U') dt = UNDECIDED;
+	
 
 	int rhs = studentData.find(",");
 	string SID = studentData.substr(0, rhs);
@@ -28,28 +29,29 @@ void roster::parse(string student)
 
 	lhs = rhs + 1;
 	rhs = studentData.find("," ,lhs);
-	int AE = studentData.substr(lhs, rhs - lhs);
-	
+	double AE = stod(studentData.substr(lhs, rhs - lhs));
+
 	lhs= rhs + 1;
 	rhs = studentData.find("," ,lhs);
-	int d1 = stod(studentData.substr(lhs, rhs - lhs));
+	double d1 = stod(studentData.substr(lhs, rhs - lhs));
 
 	lhs = rhs + 1;
 	rhs = studentData.find(",", lhs);
-	int d2 = stod(studentData.substr(lhs, rhs - lhs));
+	double d2 = stod(studentData.substr(lhs, rhs - lhs));
 
 	lhs = rhs + 1;
 	rhs = studentData.find(",", lhs);
-	int d3 = stod(studentData.substr(lhs, rhs - lhs));
+	double d3 = stod(studentData.substr(lhs, rhs - lhs));
 
-	add(SID, FNE, LNE, EA, AE, d1, d2, d3);
+
+	add(SID, FNE, LNE, EA, AE, d1, d2, d3, dt);
 	
 }
 
-void roster::add(string SID, string FNE, string LNE, string EA, int AE, int d1, int d2, int d3, DegreeType dt);
+void roster::add(string SID, string FNE, string LNE, string EA, int AE, double day1, double day2, double day3, DegreeType dt);
 	{
 
-		int dur[3] = { days1,days2,days3 };
+		int dur[3] = { day1,day2,day3 };
 
 		studentDataArray[++lastIndex] = new Student(studentId, fName, lName, emailAdd, age, dur, dt);
 
