@@ -16,7 +16,9 @@ public:
 		string lName,
 		string emailAdd,
 		int age, 
-		int days[],
+		double day1,
+		double day2,
+		double day3,
 		DegreeType dt);
 
 	void printAll();

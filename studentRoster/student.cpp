@@ -16,9 +16,9 @@ Student::Student()
 
 }
 
-Student::Student(string studentId, string fName, string lName, string emailAdd, int age, double days[], DegreeType degreeType)
+Student::Student(string studentId1, string fName, string lName, string emailAdd, int age, double days[], DegreeType degreeType)
 {
-	this->studentId = studentId;
+	this->studentId = studentId1;
 	this->fName = fName;
 	this->lName = lName;
 	this->emailAdd = emailAdd; 

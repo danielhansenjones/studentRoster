@@ -48,10 +48,10 @@ void roster::parse(string studentData)
 	
 }
 
-void roster::add(string SID, string FNE, string LNE, string EA, int AE, double day1, double day2, double day3, DegreeType dt);
+void roster::add(string SID, string FNE, string LNE, string EA, int AE, double day1, double day2, double day3, DegreeType dt)
 	{
 
-		int dur[3] = { day1,day2,day3 };
+		double dur[3] = { day1,day2,day3 };
 
 		studentDataArray[++lastIndex] = new Student(studentId, fName, lName, emailAdd, age, dur, dt);
 
@@ -59,8 +59,8 @@ void roster::add(string SID, string FNE, string LNE, string EA, int AE, double d
 
 	void roster::printAll()
 	{
-		roster::printHeader();
-		for (int i = 0; i <= roster::lastIndex i++)
+		Student::printHeader();
+		for (int i = 0; i <= roster::lastIndex; i++)
 
 		{
 			cout << studentDataArray[i]->getSid(); cout << 't';
@@ -68,8 +68,10 @@ void roster::add(string SID, string FNE, string LNE, string EA, int AE, double d
 			cout << studentDataArray[i]->getLname(); cout << 't';
 			cout << studentDataArray[i]->getEmailAdd(); cout << 't';
 			cout << studentDataArray[i]->getAge(); cout << 't';
-			cout << studentDataArray[i]->getDays(); cout << 't';
-			cout << DegreeTypeStrings[studentDataArray[i]->getDegreeType[i]<< std::endl;
+			cout << studentDataArray[i]->getDays()[1]; cout << 't';
+			cout << studentDataArray[i]->getDays()[2]; cout << 't';
+			cout << studentDataArray[i]->getDays()[3]; cout << 't';
+			cout << DegreeTypeStrings[studentDataArray[i]->getDegreeType()]<< std::endl;
 
 		}
 	}
@@ -77,8 +79,8 @@ void roster::add(string SID, string FNE, string LNE, string EA, int AE, double d
 	void roster::printByDegreeType(DegreeType dt)
 	{
 		Student::printHeader();
-		for (int i = 0; i <= Student::lastIndex; i++) {
-			if (Student:: studentDataArray[i]->getDegreeType() == dt) studentDataArray->print();
+		for (int i = 0; i <= roster::lastIndex; i++) {
+			if (roster:: studentDataArray[i]->getDegreeType() == dt) studentDataArray[i]->print();
 		}
 		cout << std::endl;
 		}
@@ -94,6 +96,8 @@ void roster::add(string SID, string FNE, string LNE, string EA, int AE, double d
 			{
 				any = true;
 				cout << sID << ":" << studentDataArray[i]->getFname() << std::endl;
+
+			}
 				if (!any) cout << "NONE" << std::endl;
 
 
@@ -104,33 +108,33 @@ void roster::add(string SID, string FNE, string LNE, string EA, int AE, double d
 		void roster::printAverageDays()
 		{
 			for (int i = 0; i <= roster::lastIndex; i++) {
-				cout << studentDataArray[i]->getID << ":";
-				cout << studentDataArray[i] - _Getdays()[0]
-					+ studentDataArray[i] - _Getdays()[1]
-					+ studentDataArray[i] - _Getdays()[2] / 3.0 << std::endl;
+				cout << studentDataArray[i]->getSid() << ":";
+				cout << studentDataArray[i] ->getDays()[0]
+					+ studentDataArray[i]  ->getDays()[1]
+					+ studentDataArray[i]  ->getDays()[2] / 3.0 << std::endl;
 
 			}
 
 			cout << std::endl;
 		}
 
-		void roster::removeStudentbyID(string studentId) 
+		void roster::removeStudentbyID(string studentId)
 
 		{
 			bool success = false;
 			for (int i = 0; i <= roster::lastIndex; i++)
 			{
-				if (studentDataArray[i])->getId() == studentid)
+				if (studentDataArray[i]->getSid() == studentId)
 				{
-				success = true;
-				if (i < numStudents - 1)
-				{
-					Student* temp = studentDataArray[i];
-					studentDataArray[i] = studentDataArray[numStudents - 1];
-					studentDataArray[numStudents - 1] = temp;
-				}
+					success = true;
+					if (i < numStudents - 1)
+					{
+						Student* temp = studentDataArray[i];
+						studentDataArray[i] = studentDataArray[numStudents - 1];
+						studentDataArray[numStudents - 1] = temp;
+					}
 
-				roster::lastIndex--;
+					roster::lastIndex--;
 
 				}
 			}
@@ -142,6 +146,7 @@ void roster::add(string SID, string FNE, string LNE, string EA, int AE, double d
 			}
 			else cout << studentId << "not found." << std::endl;
 
+		}
 			roster::~roster()
 			{
 				cout << "DESTRUCTOR CALLED WARNING!!" << std::endl << std::endl;
