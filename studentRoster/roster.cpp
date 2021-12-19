@@ -53,7 +53,7 @@ void roster::add(string SID, string FNE, string LNE, string EA, int AE, double d
 
 		double dur[3] = { day1,day2,day3 };
 
-		studentDataArray[++lastIndex] = new Student(studentId, fName, lName, emailAdd, age, dur, dt);
+		studentDataArray[++lastIndex] = new Student(SID, FNE, LNE, EA, AE, dur, dt);
 
 	}
 

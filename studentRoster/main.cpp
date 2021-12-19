@@ -30,6 +30,7 @@ int main() {
 	cout << "Dispaying all students:" << std::endl;
 	roster.printAll();
 	cout << std::endl;
+	cout << std::endl;
 
 	for (int i = 0; i < 3; i++)
 
