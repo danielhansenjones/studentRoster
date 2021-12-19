@@ -11,7 +11,13 @@ private:
 public:
 	void parse(string row);
 
-	void add(string studentId, string fName, string lName, string emailAdd, int age, int days[], DegreeType dt);
+	void add(string studentId,
+		string fName,
+		string lName,
+		string emailAdd,
+		int age, 
+		int days[],
+		DegreeType dt);
 
 	void printAll();
 	void printByDegreeType(DegreeType dt);

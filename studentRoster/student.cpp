@@ -6,7 +6,7 @@ using namespace std;
 
 Student::Student()
 {
-	this->studentId = 0;
+	this->studentId = "";
 	this->fName = "";
 	this->lName = "";
 	this->emailAdd = "";
@@ -16,7 +16,7 @@ Student::Student()
 
 }
 
-Student::Student(string studentId, string fName, string lName, string emailAdd, int age, int days[], DegreeType degreeType)
+Student::Student(string studentId, string fName, string lName, string emailAdd, int age, double days[], DegreeType degreeType)
 {
 	this->studentId = studentId;
 	this->fName = fName;
@@ -35,20 +35,21 @@ string Student::getFname() { return this->fName; }
 string Student::getLname() { return this->lName; }
 string Student::getEmailAdd() { return this->emailAdd; }
 int Student::getAge() { return this->age; }
-int Student::getDays() { return this->days; }
-string Student::getDegreeType() {return this->degreeType; }
+double* Student::getDays() { return this->days; }
+DegreeType Student::getDegreeType() {return this->degreeType; }
 
 void Student::setSid(string ID) { this->studentId = ID; }
 void Student::setFname(string first) { this->fName = first; }
 void Student::setLname(string last) { this->lName = last; }
 void Student::setEmailAdd(string email) { this->emailAdd = email; }
 void Student::setAge(int ag) { this->age = ag; }
+void Student::setDays(double days[])
 
 {
-	for Student::days (int i = 0; i < numDaystoComp; i++) this->days[i] = days[i];
+	for (int i = 0; i < numDaystoComp; i++) this->days[i] = days[i];
 }
+void Student::setDegreeType(DegreeType dt) { this->degreeType = dt; }
 
-void Student::setDegreeType{ this->DegreeType dt; }
 
 void Student::printHeader()
 {
@@ -62,8 +63,8 @@ void Student::print()
 	cout << this->getLname() << '\t';
 	cout << this->getEmailAdd() << '\t';
 	cout << this->getAge() << '\t';
-	cout << this->getDays[0]() << ',';
-	cout << this->getDays[1]() << ',';
-	cout << this->getDays[2]() << ',';
-	cout << this->getDegreeType[this->getDegreeType()] << '\t';
+	cout << this->getDays()[0] << ',';
+	cout << this->getDays()[1] << ',';
+	cout << this->getDays()[2] << ',';
+	cout << DegreeTypeStrings[this->getDegreeType()] << '\t';
 }

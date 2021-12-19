@@ -4,6 +4,6 @@
 enum DegreeType {SECURITY, NETWORK, SOFTWARE, COMPSCI, UNDECIDED};
 
 /*This prints out program types as an index*/
-static const std::string DegreeTypeStrings[]= {"SECURITY", "NETWORK","SOFTWARE","COMPSCI"};
+static const std::string DegreeTypeStrings[]= {"SECURITY","NETWORK","SOFTWARE","COMPSCI","UNDECIDED"};
 
 
