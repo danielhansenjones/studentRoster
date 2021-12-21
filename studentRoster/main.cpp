@@ -13,13 +13,16 @@ int main() {
 	cout << endl << endl << endl;
 
 
+
+	/*strings that need to be parsed to make students into objects*/
+
 	const string studentData[] =
 	{
-	"A1,John,Smith,John1989@gmail.com,20,30,35,40,SECURITY",
+	"A1,John,Smith,John1989@gm ail.com,20,30,35,40,SECURITY",
 	"A2,Suzan,Erickson,Erickson_1990@gmailcom,19,50,30,40,NETWORK",
 	"A3,Jack,Napoli,The_lawyer99yahoo.com,19,20,40,33,SOFTWARE",
 	"A4,Erin,Black,Erin.black@comcast.net,22,50,58,40,SECURITY",
-	"A5,Daniel, Hansen-Jones,dhan134@wgu.edu,35, 1,3,12,COMPSCI"
+	"A5,Daniel,Hansen-Jones,dhan134@wgu.edu,35,1,3,12,COMPSCI"
 
 	};
 
@@ -32,26 +35,28 @@ int main() {
 	cout << std::endl;
 	cout << std::endl;
 
-	for (int i = 0; i < 3; i++)
+	for (int i = 0; i < 5; i++)
 
 	{
 		cout << "Displaying by Degree Type:" << DegreeTypeStrings[i] << std::endl;
 		roster.printByDegreeType((DegreeType)i);
 	}
 	
-	cout << "Displaying Students with Invalid IDs:" << std::endl;
-	roster.printInvalidIds();
+	cout << "Displaying Students with Invalid Emails:" << std::endl;
+	roster.printInvalidEmails();
 	cout << std::endl;
 
 	cout << "Displaying Average Days for last three courses:" << std::endl;
-	roster.printAverageDays();
-
-	cout << "Removing Student by ID N_W1:" << std::endl;
-	roster.removeStudentbyID("N_W1");
+	for (int i = 0; i < numStudents; i++)
+	{
+		roster.printAverageDays(roster.studentDataArray[i]->getSid());
+	}
+	cout << "Removing Student by ID A3:" << std::endl;
+	roster.removeStudentbyID("A3");
 		cout << std::endl;
 
-	cout << "Removing Student by ID N_W1:" << std::endl;
-	roster.removeStudentbyID("N_W1");
+	cout << "Removing Student by ID A3:" << std::endl;
+	roster.removeStudentbyID("A3");
 		cout << std::endl;
 
 		system("pause");

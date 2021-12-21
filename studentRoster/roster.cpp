@@ -4,13 +4,7 @@
 
 void roster::parse(string studentData)
 {
-	DegreeType dt = UNDECIDED; 
-	if (studentData.at(0) == 'S') dt = SECURITY;
-	if (studentData.at(1) == 'N') dt = NETWORK;
-	if (studentData.at(2) == 'W') dt = SOFTWARE;
-	if (studentData.at(3) == 'C')  dt = COMPSCI;
-	if (studentData.at(4) == 'U') dt = UNDECIDED;
-	
+
 
 	int rhs = studentData.find(",");
 	string SID = studentData.substr(0, rhs);
@@ -19,20 +13,20 @@ void roster::parse(string studentData)
 	rhs = studentData.find(",", lhs);
 	string FNE = studentData.substr(lhs, rhs - lhs);
 
-	lhs = rhs + 1; 
-	rhs = studentData.find("," ,lhs);
-	string LNE= studentData.substr(lhs, rhs - lhs);
+	lhs = rhs + 1;
+	rhs = studentData.find(",", lhs);
+	string LNE = studentData.substr(lhs, rhs - lhs);
 
 	lhs = rhs + 1;
 	rhs = studentData.find(",", lhs);
 	string EA = studentData.substr(lhs, rhs - lhs);
 
 	lhs = rhs + 1;
-	rhs = studentData.find("," ,lhs);
-	double AE = stod(studentData.substr(lhs, rhs - lhs));
+	rhs = studentData.find(",", lhs);
+	int AE = stod(studentData.substr(lhs, rhs - lhs));
 
-	lhs= rhs + 1;
-	rhs = studentData.find("," ,lhs);
+	lhs = rhs + 1;
+	rhs = studentData.find(",", lhs);
 	double d1 = stod(studentData.substr(lhs, rhs - lhs));
 
 	lhs = rhs + 1;
@@ -42,6 +36,27 @@ void roster::parse(string studentData)
 	lhs = rhs + 1;
 	rhs = studentData.find(",", lhs);
 	double d3 = stod(studentData.substr(lhs, rhs - lhs));
+
+	lhs = rhs + 1;
+	rhs = studentData.find(",", lhs);
+	string strDt = studentData.substr(lhs, rhs - lhs);
+
+
+	DegreeType dt = DegreeType::UNDECIDED;
+	if (strDt == "SECURITY") {
+		dt = DegreeType::SECURITY;
+	}
+	if (strDt == "NETWORK") {
+		dt = DegreeType::NETWORK;
+	}
+	if (strDt == "SOFTWARE") {
+		dt = DegreeType::SOFTWARE;
+	}
+	if (strDt == "COMPSCI") {
+		dt = DegreeType::COMPSCI;
+	}
+
+	else DegreeType degreetype = DegreeType::UNDECIDED;
 
 
 	add(SID, FNE, LNE, EA, AE, d1, d2, d3, dt);
@@ -63,14 +78,14 @@ void roster::add(string SID, string FNE, string LNE, string EA, int AE, double d
 		for (int i = 0; i <= roster::lastIndex; i++)
 
 		{
-			cout << studentDataArray[i]->getSid(); cout << 't';
-			cout << studentDataArray[i]->getFname(); cout << 't';
-			cout << studentDataArray[i]->getLname(); cout << 't';
-			cout << studentDataArray[i]->getEmailAdd(); cout << 't';
-			cout << studentDataArray[i]->getAge(); cout << 't';
-			cout << studentDataArray[i]->getDays()[1]; cout << 't';
-			cout << studentDataArray[i]->getDays()[2]; cout << 't';
-			cout << studentDataArray[i]->getDays()[3]; cout << 't';
+			cout << studentDataArray[i]->getSid(); cout << '\t';
+			cout << studentDataArray[i]->getFname(); cout << '\t';
+			cout << studentDataArray[i]->getLname(); cout << '\t';
+			cout << studentDataArray[i]->getEmailAdd(); cout << '\t';
+			cout << studentDataArray[i]->getAge(); cout << '\t';
+			cout << studentDataArray[i]->getDays()[0]; cout << '\t';
+			cout << studentDataArray[i]->getDays()[1]; cout << '\t';
+			cout << studentDataArray[i]->getDays()[2]; cout << '\t';
 			cout << DegreeTypeStrings[studentDataArray[i]->getDegreeType()]<< std::endl;
 
 		}
@@ -80,39 +95,43 @@ void roster::add(string SID, string FNE, string LNE, string EA, int AE, double d
 	{
 		Student::printHeader();
 		for (int i = 0; i <= roster::lastIndex; i++) {
-			if (roster:: studentDataArray[i]->getDegreeType() == dt) studentDataArray[i]->print();
+			if (roster::studentDataArray[i]->getDegreeType() == dt) studentDataArray[i]->print();
 		}
 		cout << std::endl;
 		}
 
 
-	void roster::printInvalidIds()
+	void roster::printInvalidEmails()
 	{
-		bool any = false;
+		bool any = true;
 		for (int i = 0; i <= roster::lastIndex; i++)
 		{
-			string sID = (studentDataArray[i]->getSid());
-			if (sID.find('_') == string::npos || (sID.find('X') == string::npos && sID.find('x') == string::npos))
+			string EA = (studentDataArray[i]->getEmailAdd());
+			if (EA.find(' ') != string::npos||(EA.find('.') == string::npos or EA.find('@') == string::npos))
+		
 			{
-				any = true;
-				cout << sID << ":" << studentDataArray[i]->getFname() << std::endl;
+				any = false;
+				cout << studentDataArray[i]->getSid() << "  " << "Has an Invalid Emaild address:" << "  " << EA << std::endl;
 
 			}
-				if (!any) cout << "NONE" << std::endl;
+			if (!any) cout << "NONE" << std::endl;
 
-
-			}
+		
+			
 		}
+	}
 
-
-		void roster::printAverageDays()
+		void roster::printAverageDays(string studentId)
 		{
-			for (int i = 0; i <= roster::lastIndex; i++) {
-				cout << studentDataArray[i]->getSid() << ":";
-				cout << studentDataArray[i] ->getDays()[0]
-					+ studentDataArray[i]  ->getDays()[1]
-					+ studentDataArray[i]  ->getDays()[2] / 3.0 << std::endl;
-
+				for (int i = 0; i <= roster::lastIndex; i++)
+				{
+					if (studentDataArray[i]->getSid() == studentId)
+					{
+						cout << studentId << ":";
+						cout << studentDataArray[i]->getDays()[0]+
+							 studentDataArray[i]->getDays()[1]+
+							 studentDataArray[i]->getDays()[2] / 3.0 << std::endl;
+					}
 			}
 
 			cout << std::endl;
@@ -126,10 +145,10 @@ void roster::add(string SID, string FNE, string LNE, string EA, int AE, double d
 			{
 				if (studentDataArray[i]->getSid() == studentId)
 				{
-					success = true;
+					success = true;/*found that ID*/
 					if (i < numStudents - 1)
 					{
-						Student* temp = studentDataArray[i];
+						Student* temp = studentDataArray[i];/* swap it with the last student*/
 						studentDataArray[i] = studentDataArray[numStudents - 1];
 						studentDataArray[numStudents - 1] = temp;
 					}
@@ -139,12 +158,12 @@ void roster::add(string SID, string FNE, string LNE, string EA, int AE, double d
 				}
 			}
 
-			if (success)
+			if (success) /*found id*/
 			{
 				cout << studentId << "removed from repository." << std::endl;
 				this->printAll();
 			}
-			else cout << studentId << "not found." << std::endl;
+			else cout << studentId << " " << "not found." << std::endl; /* no id in that number*/
 
 		}
 			roster::~roster()

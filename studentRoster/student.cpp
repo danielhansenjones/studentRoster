@@ -53,7 +53,10 @@ void Student::setDegreeType(DegreeType dt) { this->degreeType = dt; }
 
 void Student::printHeader()
 {
-	cout << "Output format SID|First Name|Last Name|Email Address|Age|Days to finish 3 courses|Degree Program";
+	cout << "Output format:" << std:: endl;
+	cout << "SID | First Name | Last Name | Email Address | Age | Days to finish 3 courses | Degree Program"; 
+	cout << std::endl;
+	cout << std::endl;
 }
 
 void Student::print()
@@ -65,6 +68,6 @@ void Student::print()
 	cout << this->getAge() << '\t';
 	cout << this->getDays()[0] << ',';
 	cout << this->getDays()[1] << ',';
-	cout << this->getDays()[2] << ',';
-	cout << DegreeTypeStrings[this->getDegreeType()] << '\t';
+	cout << this->getDays()[2] << '\t';
+	cout << DegreeTypeStrings[this->getDegreeType()] << '\n';
 }

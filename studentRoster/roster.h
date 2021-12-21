@@ -3,11 +3,11 @@
 #include "student.h"
 class roster
 {
-private: 
+public: 
 	int lastIndex = -1;
 	const static int numStudents = 5;
 	Student* studentDataArray[numStudents];
-
+// constructor is added byt default
 public:
 	void parse(string row);
 
@@ -21,11 +21,11 @@ public:
 		double day3,
 		DegreeType dt);
 
-	void printAll();
-	void printByDegreeType(DegreeType dt);
-	void printInvalidIds();
-	void printAverageDays();
-	void removeStudentbyID(string studentId);
+	void printAll(); /* calls the print method from the student class for each student*/
+	void printByDegreeType(DegreeType dt);/*this is where the degree type is added*/
+	void printInvalidEmails();/* this function is in roster and checks for invalid emails*/
+	void printAverageDays(string studentId);/* this prints the average days in roster.cpp to show each students average day to complete the last 3 courses*/
+	void removeStudentbyID(string studentId); /*this is to find the student by supplied ID and remove it*/
 	~roster();
 
 };
