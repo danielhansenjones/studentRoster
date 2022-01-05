@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include "student.h"
+//.h header files contain the structure but not the information
 class roster
 {
 public: 

@@ -45,7 +45,7 @@ public:
 
 	static void printHeader(); /*displays a header for the data*/
 	
-	/* this function prints out this student*/
+	/* this function prints out a student*/
 	void print(); 
 
 };

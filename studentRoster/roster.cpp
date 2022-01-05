@@ -1,11 +1,9 @@
 #include "roster.h"
 #include <iostream>
 #include <string>
-
+/*this parses all the data in the studentData table from main.cpp creating studentData*/
 void roster::parse(string studentData)
 {
-
-
 	int rhs = studentData.find(",");
 	string SID = studentData.substr(0, rhs);
 
@@ -41,7 +39,7 @@ void roster::parse(string studentData)
 	rhs = studentData.find(",", lhs);
 	string strDt = studentData.substr(lhs, rhs - lhs);
 
-
+	/*this sets the degree type*/
 	DegreeType dt = DegreeType::UNDECIDED;
 	if (strDt == "SECURITY") {
 		dt = DegreeType::SECURITY;
@@ -58,39 +56,40 @@ void roster::parse(string studentData)
 
 	else DegreeType degreetype = DegreeType::UNDECIDED;
 
-
+	/*this adds the information parsed*/
 	add(SID, FNE, LNE, EA, AE, d1, d2, d3, dt);
 	
 }
 
 void roster::add(string SID, string FNE, string LNE, string EA, int AE, double day1, double day2, double day3, DegreeType dt)
 	{
-
+	/*set the days for duration*/
 		double dur[3] = { day1,day2,day3 };
 
 		studentDataArray[++lastIndex] = new Student(SID, FNE, LNE, EA, AE, dur, dt);
 
 	}
-
+/*printing the student data array in proper format*/
 	void roster::printAll()
 	{
 		Student::printHeader();
 		for (int i = 0; i <= roster::lastIndex; i++)
 
 		{
-			cout << studentDataArray[i]->getSid(); cout << '\t';
-			cout << studentDataArray[i]->getFname(); cout << '\t';
-			cout << studentDataArray[i]->getLname(); cout << '\t';
-			cout << studentDataArray[i]->getEmailAdd(); cout << '\t';
-			cout << studentDataArray[i]->getAge(); cout << '\t';
-			cout << studentDataArray[i]->getDays()[0]; cout << '\t';
-			cout << studentDataArray[i]->getDays()[1]; cout << '\t';
-			cout << studentDataArray[i]->getDays()[2]; cout << '\t';
-			cout << DegreeTypeStrings[studentDataArray[i]->getDegreeType()]<< std::endl;
-
+			studentDataArray[i]->print();
+			//cout << studentDataArray[i]->getSid(); cout << '\t';
+			//cout << studentDataArray[i]->getFname(); cout << '\t';
+			//cout << studentDataArray[i]->getLname(); cout << '\t';
+			//cout << studentDataArray[i]->getEmailAdd(); cout << '\t';
+			//cout << studentDataArray[i]->getAge(); cout << '\t';
+			//cout << studentDataArray[i]->getDays()[0]; cout << '\t';
+			//cout << studentDataArray[i]->getDays()[1]; cout << '\t';
+			//cout << studentDataArray[i]->getDays()[2]; cout << '\t';
+			//cout << DegreeTypeStrings[studentDataArray[i]->getDegreeType()]<< std::endl;
+			
 		}
 	}
-
+	/*function to print the degrees*/
 	void roster::printByDegreeType(DegreeType dt)
 	{
 		Student::printHeader();
@@ -100,7 +99,7 @@ void roster::add(string SID, string FNE, string LNE, string EA, int AE, double d
 		cout << std::endl;
 		}
 
-
+	/*function for the invalid emails*/
 	void roster::printInvalidEmails()
 	{
 		bool any = true;
@@ -120,7 +119,7 @@ void roster::add(string SID, string FNE, string LNE, string EA, int AE, double d
 			
 		}
 	}
-
+	/*average days function logic*/
 		void roster::printAverageDays(string studentId)
 		{
 				for (int i = 0; i <= roster::lastIndex; i++)
@@ -136,7 +135,7 @@ void roster::add(string SID, string FNE, string LNE, string EA, int AE, double d
 
 			cout << std::endl;
 		}
-
+		/*removing student by id logic*/
 		void roster::removeStudentbyID(string studentId)
 
 		{

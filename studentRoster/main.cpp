@@ -6,10 +6,10 @@ using namespace std;
 
 int main() {
 
-	std::cout << "Scripting and Programming Applications C867" << std::endl;
+	std::cout << "This is a program for storing a student roster." << std::endl;
 	std::cout << "This Programming was written using C++" << std::endl;
-	std::cout << " Written By Daniel Hansen-Jones" << std::endl;
-	std::cout << " Student ID# 004636371" << std::endl; 
+	std::cout << " It contains information on the students, the degrees they are taking." << std::endl;
+	std::cout << "Also email addresses and IDs." << std::endl; 
 	cout << endl << endl << endl;
 
 
@@ -22,7 +22,7 @@ int main() {
 	"A2,Suzan,Erickson,Erickson_1990@gmailcom,19,50,30,40,NETWORK",
 	"A3,Jack,Napoli,The_lawyer99yahoo.com,19,20,40,33,SOFTWARE",
 	"A4,Erin,Black,Erin.black@comcast.net,22,50,58,40,SECURITY",
-	"A5,Daniel,Hansen-Jones,dhan134@wgu.edu,35,1,3,12,COMPSCI"
+	"A5,David,Smith,dsmith@wgu.edu,35,1,3,12,COMPSCI"
 
 	};
 

@@ -3,7 +3,8 @@
 #include <string>
 
 using namespace std;
-
+/*cpp files contain the details*/
+/*this is to set the student class to defaults*/
 Student::Student()
 {
 	this->studentId = "";
@@ -15,7 +16,7 @@ Student::Student()
 	this->degreeType = DegreeType::UNDECIDED;
 
 }
-
+/*these are the pointers*/
 Student::Student(string studentId1, string fName, string lName, string emailAdd, int age, double days[], DegreeType degreeType)
 {
 	this->studentId = studentId1;
@@ -27,7 +28,7 @@ Student::Student(string studentId1, string fName, string lName, string emailAdd,
 	this->degreeType = degreeType;
 
 }
-
+/*these are the getters*/
 Student::~Student() {}
 
 string Student::getSid() { return this->studentId; }
@@ -50,7 +51,7 @@ void Student::setDays(double days[])
 }
 void Student::setDegreeType(DegreeType dt) { this->degreeType = dt; }
 
-
+/*this is the print header functin used throughout the program*/
 void Student::printHeader()
 {
 	cout << "Output format:" << std:: endl;
@@ -58,7 +59,7 @@ void Student::printHeader()
 	cout << std::endl;
 	cout << std::endl;
 }
-
+/*this is the getters*/
 void Student::print()
 {
 	cout << this->getSid() << '\t';
